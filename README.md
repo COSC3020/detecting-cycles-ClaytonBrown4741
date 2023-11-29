@@ -16,5 +16,17 @@ exercises.
 What is the worst-case big $\Theta$ complexity of your implementation? Add your
 answer, including your reasoning, to this markdown file.  
 
-**PLEASE NOTE**:  
-ADDED AUTOMATIC TEST CASES. RUNTIME ANALYSIS WILL BE ADDED LATER
+**ANSWER**:  
+First off, the time it takes to initialize the array that keeps track of the visited nodes  
+would be |V| due to it having to go over every node.  
+After that, we need to take into account the loop that searches through the graph. In the end,  
+this code will cause us to visit every node and every edge available on the graph. And because  
+we're keeping track of the nodes that we've already visited, that means that there won't be any  
+edges or nodes that are redundently checked. This means that this portion of the code will end  
+up running for |V|+|E| amount of time.  
+Finally, the amount of time it takes to check whether all nodes have been visited will take a time  
+of |V| since it has to go through every single possible node. Because this code repeats for every  
+node, that gives it a final runtime of $|V|^2$.  
+So all in all, we get a final runtime of $\Theta(|E| + |V| + |V| + |V|^2 + |E|)$ which simplifies to  
+$\Theta(|V|^2 + |E|)$  
+(If anything is wrong with my reasoning, please don't hesitate to let me know. Thank you!)
