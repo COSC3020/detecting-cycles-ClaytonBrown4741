@@ -3,35 +3,35 @@ function hasCycle(graph) {
 	visitedNodes=[]
 	keyValues=Object.keys(graph);
 	if (keyValues.length==0)
-		return true
+		return false
 	source=keyValues[0]
-	console.log(source)
+	//console.log(source)
 	for (var i=0; i<Object.keys(graph).length; i++){
 		visitedNodes[keyValues[i]]= Infinity
 	}
 	visitedNodes[source]=0
-	returnedValue=dAlgorithm(graph, source);
+	returnedValue=cycleDetector(graph, source);
 	if (returnedValue==0){
-		console.log("There is a cycle")
-		return fullPath
+		//console.log("There is a cycle")
+		return true
 	}
 	else if (returnedValue==1)
-		return []
+		return false
 	else if (returnedValue==2)
-		return []
-	console.log(visitedNodes)
+		return false
+	//console.log(visitedNodes)
 }
 
-function dAlgorithm(graph, currentNode){
+function cycleDetector(graph, currentNode){
 	fullPath.push(currentNode)
 	visitedKeys=Object.keys(visitedNodes)
-	console.log(graph[currentNode])
+	//console.log(graph[currentNode])
 	keyValues[currentNode]=Object.keys(graph[currentNode]);
         for (var j=0; j < Object.keys(graph[currentNode]).length; j++) {
 		if (visitedNodes[keyValues[currentNode][j]]===Infinity)
 		{
 			visitedNodes[keyValues[currentNode][j]]=1
-			returnValue=dAlgorithm(graph, keyValues[currentNode][j])
+			returnValue=cycleDetector(graph, keyValues[currentNode][j])
 			if (returnValue==2)
 				fullPath.pop()
 			else if (returnValue==1)
@@ -64,8 +64,10 @@ var fullPath=[]
 var visitedNodes=[]
 
 
-var graph = {};
+var graph = {'foo': {'boo': 7},
+    'boo': {'foo': 3, 'bar': 2},
+    'bar': {'boo': 4}};
 
-console.log("Begin")
-console.log(hasCycle(graph));
-console.log("Done")
+//console.log("Begin")
+//console.log(hasCycle(graph));
+//console.log("Done")
