@@ -17,5 +17,4 @@ What is the worst-case big $\Theta$ complexity of your implementation? Add your
 answer, including your reasoning, to this markdown file.  
 
 **PLEASE NOTE**:  
-I've ran a few tests, and my code seems to be fully functional. I will add in the  
-actual testing code and runtime analysis later.
+ADDED AUTOMATIC TEST CASES. RUNTIME ANALYSIS WILL BE ADDED LATER
