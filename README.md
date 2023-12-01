@@ -24,6 +24,6 @@ this code will cause us to visit every node and every edge available on the grap
 we're keeping track of the nodes that we've already visited, that means that there won't be any  
 edges or nodes that are redundently checked. This means that this portion of the code will end  
 up running for |V|+|E| amount of time.  
-So all in all, we get a final runtime of $\Theta(|E| + |V| + |V| + |E|)$ which simplifies to  
+So all in all, we get a final runtime of $\Theta(|V| + |V| + |E|)$ which simplifies to  
 $\Theta(|V| + |E|)$  
 (If anything is wrong with my reasoning, please don't hesitate to let me know. Thank you!)
