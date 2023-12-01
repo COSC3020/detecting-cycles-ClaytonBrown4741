@@ -1,3 +1,4 @@
+[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=12548006&assignment_repo_type=AssignmentRepo)
 # Detecting Cycles in Graphs
 
 Kruskal's Algorithm adds edges to the minimum spanning tree, unless they would
@@ -13,4 +14,22 @@ exercises.
 ## Runtime Analysis
 
 What is the worst-case big $\Theta$ complexity of your implementation? Add your
-answer, including your reasoning, to this markdown file.
+answer, including your reasoning, to this markdown file.  
+
+**ANSWER**:  
+First off, the time it takes to initialize the array that keeps track of the visited nodes  
+would be |V| due to it having to go over every node.  
+After that, we need to take into account the loop that searches through the graph. In the end,  
+this code will cause us to visit every node and every edge available on the graph. And because  
+we're keeping track of the nodes that we've already visited, that means that there won't be any  
+edges or nodes that are redundently checked. This means that this portion of the code will end  
+up running for |V|+|E| amount of time.  
+So all in all, we get a final runtime of $\Theta(|V| + |V| + |E|)$ which simplifies to  
+$\Theta(|V| + |E|)$  
+(If anything is wrong with my reasoning, please don't hesitate to let me know. Thank you!)  
+
+**ANSWER TO PREVIOUS PUSH COMMENT**: In response to that, I have tried a few more test cases and  
+all of them seem to pass without issue. Furthermore, the first node does *not* need to be a part  
+of a cycle in order for it to operate. This can most readily be seen in test 6, where the cycle  
+comes from 'e' and 'bar' pointing at one another. The first element (that being 'foo') is not  
+a part of this cycle, and yet the code is still capable of detecting the cycle.
