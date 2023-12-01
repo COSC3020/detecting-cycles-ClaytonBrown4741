@@ -26,4 +26,10 @@ edges or nodes that are redundently checked. This means that this portion of the
 up running for |V|+|E| amount of time.  
 So all in all, we get a final runtime of $\Theta(|V| + |V| + |E|)$ which simplifies to  
 $\Theta(|V| + |E|)$  
-(If anything is wrong with my reasoning, please don't hesitate to let me know. Thank you!)
+(If anything is wrong with my reasoning, please don't hesitate to let me know. Thank you!)  
+
+**ANSWER TO PREVIOUS PUSH COMMENT**: In response to that, I have tried a few more test cases and  
+all of them seem to pass without issue. Furthermore, the first node does *not* need to be a part  
+of a cycle in order for it to operate. This can most readily be seen in test 6, where the cycle  
+comes from 'e' and 'bar' pointing at one another. The first element (that being 'foo') is not  
+a part of this cycle, and yet the code is still capable of detecting the cycle.
