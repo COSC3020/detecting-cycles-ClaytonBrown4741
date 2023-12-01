@@ -1,73 +1,50 @@
-function hasCycle(graph) {
-	fullPath=[]
-	visitedNodes=[]
-	keyValues=Object.keys(graph);
-	if (keyValues.length==0)
+var isCyclic=false
+
+function hasCycle(graph){
+	var fullPath=[]
+	var visitedNodes=[]
+	isCyclic=false
+	nodeList=Object.keys(graph);
+	if (nodeList.length==0)
 		return false
-	source=keyValues[0]
-	//console.log(source)
+	source=nodeList[0]
 	for (var i=0; i<Object.keys(graph).length; i++){
-		visitedNodes[keyValues[i]]= Infinity
+		visitedNodes[nodeList[i]]= Infinity
 	}
 	visitedNodes[source]=0
-	returnedValue=cycleDetector(graph, source);
-	if (returnedValue==0){
-		//console.log("There is a cycle")
-		return true
-	}
-	else if (returnedValue==1)
-		return false
-	else if (returnedValue==2)
-		return false
-	//console.log(visitedNodes)
+	detectingCycle(graph, source, fullPath, visitedNodes);
+	return isCyclic
 }
 
-function cycleDetector(graph, currentNode){
-	fullPath.push(currentNode)
+function detectingCycle(graph, currentNode, fullPath, visitedNodes){
 	visitedKeys=Object.keys(visitedNodes)
-	//console.log(graph[currentNode])
-	keyValues[currentNode]=Object.keys(graph[currentNode]);
+	nodeList[currentNode]=Object.keys(graph[currentNode]);
         for (var j=0; j < Object.keys(graph[currentNode]).length; j++) {
-		if (visitedNodes[keyValues[currentNode][j]]===Infinity)
+		if (visitedNodes[nodeList[currentNode][j]]===Infinity)
 		{
-			visitedNodes[keyValues[currentNode][j]]=1
-			returnValue=cycleDetector(graph, keyValues[currentNode][j])
-			if (returnValue==2)
+			fullPath.push(currentNode)
+			visitedNodes[nodeList[currentNode][j]]=1
+			// This has the same rules as defined for my "augmenting path" assignment. The whole  
+			// purpose of this is to keep my current path as updated as possible so that I may  
+			// be able to detect any potential loops. For instance, if I encounter a node that  
+			// I've already encountered in this current iteration of the path, then I know that  
+			// it has to have a cycle.
+			returnedValue =  detectingCycle(graph, nodeList[currentNode][j], fullPath, visitedNodes)
+			if (JSON.stringify(returnedValue)==JSON.stringify([])){
 				fullPath.pop()
-			else if (returnValue==1)
-				return 1
-			else if (returnValue==0)
-				return 0
-
-		}
-		else
-		{
-			if (fullPath.includes(keyValues[currentNode][j])){
-				return 0
 			}
-			//console.log("can't go")
+			else{
+				return fullPath
+			}
 		}
-        allVisited=true;
-        for (var i=0; i<visitedKeys.length; i++){
-                if (visitedNodes[visitedKeys[i]]===Infinity)
-                        allVisited=false;
-        }
-        if (allVisited==true){
-                fullPath=[]
-                return 1
-        }
+		else if (fullPath.includes(nodeList[currentNode][j])){
+			isCyclic = true;
+			return []
+		}
+		
 	}
-	return 2;
+	if (!Object.values(visitedNodes).includes(Infinity)){
+                return []
+        }
+	return []
 }
-
-var fullPath=[]
-var visitedNodes=[]
-
-
-var graph = {'foo': {'boo': 7},
-    'boo': {'foo': 3, 'bar': 2},
-    'bar': {'boo': 4}};
-
-//console.log("Begin")
-//console.log(hasCycle(graph));
-//console.log("Done")
