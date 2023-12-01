@@ -17,3 +17,18 @@ dm5 = {'foo': {'boo': 7},
     'boo': {'bar': 2},
     'bar': {'boo': 4}};
 assert(hasCycle(dm5) == true);
+dm6 = {'foo': {'boo': 7},
+    'boo': {'bar': 2},
+    'bar': {'e': 4},
+     'e': {'bar': 3}};
+assert(hasCycle(dm6) == true)
+dm7 = {'foo': {'boo': 7, 'bar': 3},
+    'boo': {'bar': 2},
+    'bar': {'e': 4},
+     'e': {}};
+assert(hasCycle(dm7) == false)
+dm8 = {'foo': {'boo': 7, 'bar': 3},
+    'boo': {'bar': 2},
+    'bar': {'e': 4},
+     'e': {'boo': 3}};
+assert(hasCycle(dm8) == true)
